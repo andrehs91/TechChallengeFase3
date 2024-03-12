@@ -30,8 +30,9 @@ stages:
     - task: FileTransform@1
       displayName: Replace variables - Consumer
       inputs:
-        folderPath: '$(Build.SourcesDirectory)/FIAP.Consumer/appsettings.json'
+        folderPath: '$(Build.SourcesDirectory)/FIAP.Consumer/FIAP.Consumer.csproj'
         fileType: 'json'
+        targetFiles: 'appsettings.json'
     - task: Docker@2
       displayName: Build and push an image to container registry - Consumer
       inputs:
@@ -44,8 +45,9 @@ stages:
     - task: FileTransform@1
       displayName: Replace variables - Producer
       inputs:
-        folderPath: '$(Build.SourcesDirectory)/FIAP.Producer/appsettings.json'
+        folderPath: '$(Build.SourcesDirectory)/FIAP.Producer/FIAP.Producer.csproj'
         fileType: 'json'
+        targetFiles: 'appsettings.json'
     - task: Docker@2
       displayName: Build and push an image to container registry - Producer
       inputs:
