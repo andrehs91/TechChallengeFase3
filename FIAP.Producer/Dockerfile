@@ -9,7 +9,9 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY . .
+COPY . "FIAP.Producer/"
+COPY ["FIAP.Core/", "FIAP.Core/"]
+WORKDIR "/src/FIAP.Producer"
 RUN dotnet restore "FIAP.Producer.csproj"
 RUN dotnet build "FIAP.Producer.csproj" -c $BUILD_CONFIGURATION -o /app/build
 

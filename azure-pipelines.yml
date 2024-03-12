@@ -33,8 +33,13 @@ stages:
         folderPath: '$(System.DefaultWorkingDirectory)/**/'
         fileType: 'json'
         targetFiles: '**/appsettings.json'
+    - task: CopyFiles@2
+      displayName: Copying files from FIAP.Core library to Consumer folder.
+      inputs:
+        SourceFolder: '$(Build.SourcesDirectory)/FIAP.Core'
+        TargetFolder: '$(Build.SourcesDirectory)/FIAP.Consumer/FIAP.Core'
     - task: Docker@2
-      displayName: Consumer - Build and push an image to container registry
+      displayName: Consumer - Build and Push to ACR
       inputs:
         command: buildAndPush
         repository: $(imageRepositoryConsumer)
@@ -42,8 +47,13 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: CopyFiles@2
+      displayName: Copying files from FIAP.Core library to Producer folder.
+      inputs:
+        SourceFolder: '$(Build.SourcesDirectory)/FIAP.Core'
+        TargetFolder: '$(Build.SourcesDirectory)/FIAP.Producer/FIAP.Core'
     - task: Docker@2
-      displayName: Producer - Build and push an image to container registry
+      displayName: Producer - Build and Push to ACR
       inputs:
         command: buildAndPush
         repository: $(imageRepositoryProducer)
@@ -51,4 +61,3 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-
