@@ -28,13 +28,13 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: FileTransform@1
-      displayName: Replace variables - Consumer
+      displayName: Replace variables
       inputs:
         folderPath: '$(System.DefaultWorkingDirectory)/**/'
         fileType: 'json'
         targetFiles: '**/appsettings.json'
     - task: Docker@2
-      displayName: Build and push an image to container registry - Consumer
+      displayName: Consumer - Build and push an image to container registry
       inputs:
         command: buildAndPush
         repository: $(imageRepositoryConsumer)
@@ -43,7 +43,7 @@ stages:
         tags: |
           $(tag)
     - task: Docker@2
-      displayName: Build and push an image to container registry - Producer
+      displayName: Producer - Build and push an image to container registry
       inputs:
         command: buildAndPush
         repository: $(imageRepositoryProducer)
