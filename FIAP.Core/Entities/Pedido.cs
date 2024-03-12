@@ -1,12 +1,10 @@
-﻿using FIAP.Core.Entities;
+﻿namespace FIAP.Core.Entities;
 
-namespace FIAP.Producer.DTO;
-
-public class PedidoDTO
+public class Pedido : DefaultEntity
 {
-    public uint Id { get; set; }
     public uint ClienteId { get; set; }
-    public List<ItemDTO> Itens { get; set; } = [];
+    public Cliente Cliente { get; set; } = null!;
+    public List<Item> Itens { get; set; } = [];
     public int QuantidadeTotal
     {
        get
@@ -26,15 +24,5 @@ public class PedidoDTO
                resultado += item.Produto.Preco * item.Quantidade;
            return resultado;
        }
-    }
-
-    public PedidoDTO(Pedido pedido)
-    {
-        Id = pedido.Id;
-        ClienteId = pedido.ClienteId;
-        if (pedido.Itens.Count != 0)
-        {
-            Itens = pedido.Itens.Select(i => new ItemDTO(i)).ToList();
-        }
     }
 }

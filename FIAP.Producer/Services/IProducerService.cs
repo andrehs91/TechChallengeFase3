@@ -4,5 +4,5 @@ namespace FIAP.Producer.Services;
 
 public interface IProducerService
 {
-    public void EnviarPedido(PedidoDTO pedidoDTO);
+    void EnviarPedido(EnviarPedidoDTO pedidoDTO);
 }

@@ -10,7 +10,7 @@ INSERT INTO [TechChallenge].[Fase3].[Clientes]
 VALUES
     ('André', 'andre@email.com'),
     ('Fábio', 'fabio@email.com'),
-    ('Angelo', 'angelo@email.com'),
+    ('Ângelo', 'angelo@email.com'),
     ('Ricardo', 'ricardo@email.com')
 
 -- -----------------------------------------------------------------------------
@@ -18,9 +18,9 @@ VALUES
 INSERT INTO [TechChallenge].[Fase3].[Produtos]
     ([Nome], [Descricao], [Preco])
 VALUES
-    ('Produto A', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 100),
-    ('Produto B', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 200),
-    ('Produto C', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 300),
-    ('Produto D', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 400),
-    ('Produto E', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 500),
-    ('Produto F', 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', 600)
+    ('Produto A', 'Descrição do produto A.', 100),
+    ('Produto B', 'Descrição do produto B.', 200),
+    ('Produto C', 'Descrição do produto C.', 300),
+    ('Produto D', 'Descrição do produto D.', 400),
+    ('Produto E', 'Descrição do produto E.', 500),
+    ('Produto F', 'Descrição do produto F.', 600)

@@ -1,4 +1,5 @@
-﻿using FIAP.Producer.DTO;
+﻿using FIAP.Core.Entities;
+using FIAP.Producer.DTO;
 using FIAP.Producer.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,15 +7,22 @@ namespace FIAP.Producer.Controllers;
 
 [ApiController]
 [Route("api/pedido")]
-public class PedidoController(ILogger<PedidoController> logger, IProducerService producerService) : ControllerBase
+[Produces("application/json")]
+public class PedidoController(
+    ILogger<PedidoController> logger,
+    IPedidoService pedidoService,
+    IProducerService producerService
+) : ControllerBase
 {
     private readonly ILogger<PedidoController> _logger = logger;
+    private readonly IPedidoService _pedidoService = pedidoService;
     private readonly IProducerService _producerService = producerService;
 
     [HttpPost]
+    [Route("enviar-pedido")]
     [ProducesResponseType(typeof(RespostaDTO), StatusCodes.Status202Accepted)]
     [ProducesResponseType(typeof(RespostaDTO), StatusCodes.Status400BadRequest)]
-    public ActionResult<RespostaDTO> EnviarPedido([FromBody] PedidoDTO pedidoDTO)
+    public ActionResult<RespostaDTO> EnviarPedido([FromBody] EnviarPedidoDTO pedidoDTO)
     {
         try
         {
@@ -32,5 +40,13 @@ public class PedidoController(ILogger<PedidoController> logger, IProducerService
             _logger.LogError(e, "PedidoController.EnviarPedido");
             return StatusCode(500, RespostaDTO.Erro("Um erro impediu o envio do pedido. Entre em contato com o suporte."));
         }
+    }
+
+    [HttpGet]
+    [Route("listar-pedidos")]
+    public async Task<ActionResult<IList<PedidoDTO>>> ListarPedidos()
+    {
+        IList<Pedido> pedidos = await _pedidoService.ListarPedidosComItensAsync();
+        return Ok(pedidos.Select(p => new PedidoDTO(p)).ToList());
     }
 }

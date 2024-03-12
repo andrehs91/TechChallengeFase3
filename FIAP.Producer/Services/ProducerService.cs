@@ -8,7 +8,7 @@ public class ProducerService(IConfiguration configuration) : IProducerService
 {
     private readonly IConfiguration _configuration = configuration;
 
-    public void EnviarPedido(PedidoDTO pedidoDTO)
+    public void EnviarPedido(EnviarPedidoDTO pedidoDTO)
     {
         ConnectionFactory factory = new();
         factory.HostName = _configuration["RabbitMQ:HostName"];
