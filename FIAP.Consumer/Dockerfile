@@ -7,15 +7,13 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["FIAP.Consumer/FIAP.Consumer.csproj", "FIAP.Consumer/"]
-RUN dotnet restore "./FIAP.Consumer/./FIAP.Consumer.csproj"
 COPY . .
-WORKDIR "/src/FIAP.Consumer"
-RUN dotnet build "./FIAP.Consumer.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet restore "FIAP.Consumer.csproj"
+RUN dotnet build "FIAP.Consumer.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./FIAP.Consumer.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "FIAP.Consumer.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
