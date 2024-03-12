@@ -32,7 +32,7 @@ stages:
       inputs:
         folderPath: '$(System.DefaultWorkingDirectory)/**/'
         fileType: 'json'
-        targetFiles: 'appsettings.json'
+        # targetFiles: 'appsettings.json'
     - task: Docker@2
       displayName: Build and push an image to container registry - Consumer
       inputs:
