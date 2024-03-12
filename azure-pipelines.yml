@@ -74,7 +74,7 @@ stages:
               --name consumer \
               --image $(containerRegistry)/$(imageRepositoryConsumer):latest \
               --cpu 0.5 \
-              --memory 1.5Gi \
+              --memory 1 \
               --registry-login-server $(containerRegistry) \
               --registry-username $(registryUsername) \
               --registry-password $(registryPassword)
@@ -89,7 +89,7 @@ stages:
               --name producer \
               --image $(containerRegistry)/$(imageRepositoryProducer):latest \
               --cpu 0.5 \
-              --memory 1.5Gi \
+              --memory 1 \
               --registry-login-server $(containerRegistry) \
               --registry-username $(registryUsername) \
               --registry-password $(registryPassword)
