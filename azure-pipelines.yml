@@ -11,21 +11,17 @@ resources:
 variables:
   imageRepositoryConsumer: 'techchallengefase3consumer'
   imageRepositoryProducer: 'techchallengefase3producer'
-  containerRegistry: 'andrehs.azurecr.io'
   dockerfilePathConsumer: '$(Build.SourcesDirectory)/FIAP.Consumer/Dockerfile'
   dockerfilePathProducer: '$(Build.SourcesDirectory)/FIAP.Producer/Dockerfile'
-  tag: '$(Build.BuildId)'
-
-  vmImageName: 'ubuntu-latest'
 
 stages:
 - stage: Build
-  displayName: Build and push stage
+  displayName: Build and Push
   jobs:
   - job: Build
     displayName: Build
     pool:
-      vmImage: $(vmImageName)
+      vmImage: 'ubuntu-latest'
     steps:
     - task: FileTransform@1
       displayName: Replace variables
@@ -45,8 +41,7 @@ stages:
         repository: $(imageRepositoryConsumer)
         dockerfile: $(dockerfilePathConsumer)
         containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
+        tags: $(Build.BuildId)
     - task: CopyFiles@2
       displayName: Copying files from FIAP.Core library to Producer folder.
       inputs:
@@ -59,5 +54,42 @@ stages:
         repository: $(imageRepositoryProducer)
         dockerfile: $(dockerfilePathProducer)
         containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
+        tags: $(Build.BuildId)
+
+- stage: DeployToACI
+  displayName: Deploy To ACI
+  jobs:
+    - job: DeployToACIJob
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+        - task: UsePythonVersion@0
+          displayName: 'Consumer - Deploy to ACI'
+          inputs:
+            versionSpec: '3.x'
+            addToPath: true
+        - script: |
+            az container create \
+              --resource-group $(resourceGroup) \
+              --name consumer \
+              --image $(containerRegistry)/$(imageRepositoryConsumer):latest \
+              --cpu 0.5 \
+              --memory 1.5Gi \
+              --registry-login-server $(containerRegistry) \
+              --registry-username $(registryUsername) \
+              --registry-password $(registryPassword)
+        - task: UsePythonVersion@0
+          displayName: 'Producer - Deploy to ACI'
+          inputs:
+            versionSpec: '3.x'
+            addToPath: true
+        - script: |
+            az container create \
+              --resource-group $(resourceGroup) \
+              --name producer \
+              --image $(containerRegistry)/$(imageRepositoryProducer):latest \
+              --cpu 0.5 \
+              --memory 1.5Gi \
+              --registry-login-server $(containerRegistry) \
+              --registry-username $(registryUsername) \
+              --registry-password $(registryPassword)
