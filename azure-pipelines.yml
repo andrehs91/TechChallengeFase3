@@ -74,6 +74,7 @@ stages:
                 --resource-group $(resourceGroup) \
                 --name consumer \
                 --image $(containerRegistry)/$(imageRepositoryConsumer):$(Build.BuildId) \
+                --ports 5672
                 --cpu 0.5 \
                 --memory 1 \
                 --registry-login-server $(containerRegistry) \
@@ -90,6 +91,8 @@ stages:
                 --resource-group $(resourceGroup) \
                 --name producer \
                 --image $(containerRegistry)/$(imageRepositoryProducer):$(Build.BuildId) \
+                --ip-address Public
+                --ports 80 443 5672
                 --cpu 0.5 \
                 --memory 1 \
                 --registry-login-server $(containerRegistry) \
