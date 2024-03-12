@@ -63,33 +63,35 @@ stages:
       pool:
         vmImage: 'ubuntu-latest'
       steps:
-        - task: UsePythonVersion@0
+        - task: AzureCLI@2
           displayName: 'Consumer - Deploy to ACI'
           inputs:
-            versionSpec: '3.x'
-            addToPath: true
-        - script: |
-            az container create \
-              --resource-group $(resourceGroup) \
-              --name consumer \
-              --image $(containerRegistry)/$(imageRepositoryConsumer):latest \
-              --cpu 0.5 \
-              --memory 1 \
-              --registry-login-server $(containerRegistry) \
-              --registry-username $(registryUsername) \
-              --registry-password $(registryPassword)
-        - task: UsePythonVersion@0
+            azureSubscription: $(azureSubscription)
+            scriptType: 'ps'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              az container create \
+                --resource-group $(resourceGroup) \
+                --name consumer \
+                --image $(containerRegistry)/$(imageRepositoryConsumer):latest \
+                --cpu 0.5 \
+                --memory 1 \
+                --registry-login-server $(containerRegistry) \
+                --registry-username $(registryUsername) \
+                --registry-password $(registryPassword)
+        - task: AzureCLI@2
           displayName: 'Producer - Deploy to ACI'
           inputs:
-            versionSpec: '3.x'
-            addToPath: true
-        - script: |
-            az container create \
-              --resource-group $(resourceGroup) \
-              --name producer \
-              --image $(containerRegistry)/$(imageRepositoryProducer):latest \
-              --cpu 0.5 \
-              --memory 1 \
-              --registry-login-server $(containerRegistry) \
-              --registry-username $(registryUsername) \
-              --registry-password $(registryPassword)
+            azureSubscription: $(azureSubscription)
+            scriptType: 'ps'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              az container create \
+                --resource-group $(resourceGroup) \
+                --name producer \
+                --image $(containerRegistry)/$(imageRepositoryProducer):latest \
+                --cpu 0.5 \
+                --memory 1 \
+                --registry-login-server $(containerRegistry) \
+                --registry-username $(registryUsername) \
+                --registry-password $(registryPassword)
