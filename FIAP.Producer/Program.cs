@@ -1,8 +1,8 @@
 using FIAP.Core.Data;
 using FIAP.Core.Entities;
+using FIAP.Core.Repositories;
 using FIAP.Producer.Filters;
 using FIAP.Producer.Services;
-using FiapStore.Repository;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);

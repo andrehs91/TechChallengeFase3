@@ -30,7 +30,7 @@ public class PedidoController(
                 return BadRequest(RespostaDTO.Erro("Informe ao menos um item."));
 
             if (pedidoDTO.Produtos.Where(i => i.Quantidade == 0).Any())
-                return BadRequest(RespostaDTO.Erro("A quantidade do item deve ser maior do que zero."));
+                return BadRequest(RespostaDTO.Erro("A quantidade do produto deve ser maior do que zero."));
 
             _producerService.EnviarPedido(pedidoDTO);
             return Accepted(RespostaDTO.Sucesso("Pedido enviado com sucesso."));

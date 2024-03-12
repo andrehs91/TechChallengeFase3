@@ -2,6 +2,7 @@
 
 public class Pedido : DefaultEntity
 {
+    public DateTime Data { get; set; }
     public uint ClienteId { get; set; }
     public Cliente Cliente { get; set; } = null!;
     public List<Item> Itens { get; set; } = [];

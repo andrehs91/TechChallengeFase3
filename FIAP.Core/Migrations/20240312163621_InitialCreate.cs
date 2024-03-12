@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace FIAP.Consumer.Migrations
+namespace FIAP.Core.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -51,6 +52,7 @@ namespace FIAP.Consumer.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ClienteId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>

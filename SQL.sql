@@ -1,11 +1,16 @@
-SELECT * FROM [TechChallenge].[Fase3].[Clientes]
-SELECT * FROM [TechChallenge].[Fase3].[Itens]
-SELECT * FROM [TechChallenge].[Fase3].[Pedidos]
-SELECT * FROM [TechChallenge].[Fase3].[Produtos]
+-- DELETE FROM [Fase3].[Itens]
+-- DELETE FROM [Fase3].[Pedidos]
 
 -- -----------------------------------------------------------------------------
 
-INSERT INTO [TechChallenge].[Fase3].[Clientes]
+SELECT * FROM [Fase3].[Clientes]
+SELECT * FROM [Fase3].[Itens]
+SELECT * FROM [Fase3].[Pedidos]
+SELECT * FROM [Fase3].[Produtos]
+
+-- -----------------------------------------------------------------------------
+
+INSERT INTO [Fase3].[Clientes]
     ([Nome], [Email])
 VALUES
     ('André', 'andre@email.com'),
@@ -15,7 +20,7 @@ VALUES
 
 -- -----------------------------------------------------------------------------
 
-INSERT INTO [TechChallenge].[Fase3].[Produtos]
+INSERT INTO [Fase3].[Produtos]
     ([Nome], [Descricao], [Preco])
 VALUES
     ('Produto A', 'Descrição do produto A.', 100),

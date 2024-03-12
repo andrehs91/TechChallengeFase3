@@ -5,6 +5,7 @@ namespace FIAP.Producer.DTO;
 public class PedidoDTO
 {
     public uint Id { get; set; }
+    public DateTime Data { get; set; }
     public uint ClienteId { get; set; }
     public List<ItemDTO> Itens { get; set; } = [];
     public int QuantidadeTotal
@@ -31,6 +32,7 @@ public class PedidoDTO
     public PedidoDTO(Pedido pedido)
     {
         Id = pedido.Id;
+        Data = pedido.Data;
         ClienteId = pedido.ClienteId;
         if (pedido.Itens.Count != 0)
         {

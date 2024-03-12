@@ -1,6 +1,6 @@
 ﻿using FIAP.Core.Data;
 using FIAP.Core.Entities;
-using FiapStore.Repository;
+using FIAP.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace FIAP.Producer.Services;

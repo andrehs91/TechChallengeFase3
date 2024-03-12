@@ -1,11 +1,11 @@
-using System.Text;
-using System.Text.Json;
 using FIAP.Consumer.DTO;
-using FIAP.Consumer.Entities;
 using FIAP.Consumer.Exceptions;
 using FIAP.Consumer.Services;
+using FIAP.Core.Entities;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using System.Text;
+using System.Text.Json;
 
 namespace FIAP.Consumer;
 
@@ -56,17 +56,17 @@ public sealed class Worker(ILogger<Worker> logger, IConfiguration configuration,
                 }
                 catch (ClienteException e)
                 {
-                    _logger.LogError(e, "Cliente não encontrado.");
+                    _logger.LogError(e, "Cliente nï¿½o encontrado.");
                     SendError(channel, "clientenaoencontrado", message);
                 }
                 catch (ProdutoException e)
                 {
-                    _logger.LogError(e, "Produto não encontrado.");
+                    _logger.LogError(e, "Produto nï¿½o encontrado.");
                     SendError(channel, "produtonaoencontrado", message);
                 }
                 catch (Exception e)
                 {
-                    _logger.LogError(e, "Erro não identificado.");
+                    _logger.LogError(e, "Erro nï¿½o identificado.");
                     SendError(channel, "outros", message);
                 }
             }

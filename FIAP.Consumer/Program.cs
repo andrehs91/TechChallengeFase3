@@ -1,7 +1,8 @@
 using FIAP.Consumer;
-using FIAP.Consumer.Entities;
 using FIAP.Consumer.Services;
-using FiapStore.Repository;
+using FIAP.Core.Data;
+using FIAP.Core.Entities;
+using FIAP.Core.Repositories;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();

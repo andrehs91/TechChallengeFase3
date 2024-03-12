@@ -1,5 +1,5 @@
 ﻿using FIAP.Consumer.DTO;
-using FIAP.Consumer.Entities;
+using FIAP.Core.Entities;
 
 namespace FIAP.Consumer.Services;
 

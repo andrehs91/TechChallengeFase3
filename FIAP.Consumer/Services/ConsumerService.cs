@@ -1,7 +1,7 @@
 ﻿using FIAP.Consumer.DTO;
-using FIAP.Consumer.Entities;
 using FIAP.Consumer.Exceptions;
-using FiapStore.Repository;
+using FIAP.Core.Entities;
+using FIAP.Core.Repositories;
 
 namespace FIAP.Consumer.Services;
 
@@ -20,6 +20,8 @@ public class ConsumerService(IRepository<Cliente> clienteRepository, IRepository
     public async Task<Pedido> ValidarPedidoAsync(PedidoDTO pedidoDTO)
     {
         Pedido pedido = new();
+
+        pedido.Data = pedidoDTO.Data;
 
         uint clienteID = pedidoDTO.ClienteId;
         Cliente cliente = await _clienteRepository.GetAsync(clienteID)

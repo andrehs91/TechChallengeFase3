@@ -2,7 +2,7 @@
 using FIAP.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FiapStore.Repository;
+namespace FIAP.Core.Repositories;
 
 public class Repository<T> : IRepository<T> where T : DefaultEntity
 {

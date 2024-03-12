@@ -1,6 +1,6 @@
 ﻿using FIAP.Core.Entities;
 
-namespace FiapStore.Repository;
+namespace FIAP.Core.Repositories;
 
 public interface IRepository<T> where T : DefaultEntity
 {

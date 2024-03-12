@@ -1,5 +1,5 @@
 ﻿using FIAP.Core.Entities;
-using FiapStore.Repository;
+using FIAP.Core.Repositories;
 
 namespace FIAP.Producer.Services;
 
