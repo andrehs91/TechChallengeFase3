@@ -30,7 +30,7 @@ stages:
     - task: FileTransform@1
       displayName: Replace variables - Consumer
       inputs:
-        folderPath: '$(Build.SourcesDirectory)/FIAP.Consumer/FIAP.Consumer.csproj'
+        folderPath: '$(System.DefaultWorkingDirectory)/**/'
         fileType: 'json'
         targetFiles: 'appsettings.json'
     - task: Docker@2
@@ -57,3 +57,4 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+
