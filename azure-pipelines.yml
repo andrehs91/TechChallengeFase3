@@ -67,7 +67,7 @@ stages:
           displayName: 'Consumer - Deploy to ACI'
           inputs:
             azureSubscription: $(azureSubscription)
-            scriptType: 'ps'
+            scriptType: 'bash'
             scriptLocation: 'inlineScript'
             inlineScript: |
               az container create \
@@ -83,7 +83,7 @@ stages:
           displayName: 'Producer - Deploy to ACI'
           inputs:
             azureSubscription: $(azureSubscription)
-            scriptType: 'ps'
+            scriptType: 'bash'
             scriptLocation: 'inlineScript'
             inlineScript: |
               az container create \
