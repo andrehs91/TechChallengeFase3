@@ -73,7 +73,7 @@ stages:
               az container create \
                 --resource-group $(resourceGroup) \
                 --name consumer \
-                --image $(containerRegistry)/$(imageRepositoryConsumer):latest \
+                --image $(containerRegistry)/$(imageRepositoryConsumer):$(Build.BuildId) \
                 --cpu 0.5 \
                 --memory 1 \
                 --registry-login-server $(containerRegistry) \
@@ -89,7 +89,7 @@ stages:
               az container create \
                 --resource-group $(resourceGroup) \
                 --name producer \
-                --image $(containerRegistry)/$(imageRepositoryProducer):latest \
+                --image $(containerRegistry)/$(imageRepositoryProducer):$(Build.BuildId) \
                 --cpu 0.5 \
                 --memory 1 \
                 --registry-login-server $(containerRegistry) \
