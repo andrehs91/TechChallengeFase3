@@ -25,3 +25,6 @@ Caso o pedido atenda as regras definidas, ele é cadastrado no banco de dados.
 - Aplicar as *migrations*: ``` Update-Database -Project FIAP.Core -StartupProject FIAP.Consumer ```;
 - Executar o script SQL “CargaDeDados.sql” no banco de dados “TechChallenge”;
 - Inicializar um container do RabbitMQ: ``` docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.13-management ```.
+- Executar o projeto **FIAP.Consumer**;
+- Executar o projeto **FIAP.Producer**;
+> :heavy_exclamation_mark: O projeto possui suporte para Docker, mas localmente prefira executar de forma tradicional a fim de evitar mais configurações. Os arquivos Dockerfile estão preparados para o pipeline de CI/CD definido pelo arquivo *azure-pipelines.yml*.
