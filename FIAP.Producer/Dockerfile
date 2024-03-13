@@ -2,10 +2,11 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 ENV ASPNETCORE_HTTP_PORTS=80
+ENV ASPNETCORE_HTTPS_PORTS=443
 USER app
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 80
+EXPOSE 443
 EXPOSE 5672
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build

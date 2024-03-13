@@ -75,6 +75,7 @@ stages:
                 --resource-group $(resourceGroup) \
                 --name consumer \
                 --image $(containerRegistry)/$(imageRepositoryConsumer):$(Build.BuildId) \
+                --ip-address Public \
                 --ports 5672 \
                 --cpu 0.5 \
                 --memory 1 \
